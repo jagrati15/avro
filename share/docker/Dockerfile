@@ -159,7 +159,7 @@ RUN if [ `uname -m` = "aarch64" ] ; then \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists; \
     else
-    curl -sSLO https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb; \
+    && curl -sSLO https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb; \
     && dpkg -i packages-microsoft-prod.deb; \
     && rm packages-microsoft-prod.deb; \
     && apt-get -qqy update; \
