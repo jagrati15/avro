@@ -146,9 +146,9 @@ RUN python3 -m pip install --upgrade pip setuptools wheel \
 
 # Install .NET SDK
 RUN if [ `uname -m` = "aarch64" ] ; then \
-    curl -sSLO https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-3.1.402-linux-arm64-binaries \
+    curl -sSLO https://download.visualstudio.microsoft.com/download/pr/186257d9-bca2-4dda-be74-006205965ec9/b2b63d45482701473d9731abc41ecc2a/dotnet-sdk-3.1.402-linux-arm64.tar.gz \
     && mkdir -p /usr/share/dotnet \
-    && mv sdk-3.1.402-linux-arm64-binaries /usr/share/dotnet \
+    && tar -zxf dotnet-sdk-3.1.402-linux-arm64.tar.gz -C /usr/share/dotnet \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet; \
     else \
     curl -sSLO https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb \
