@@ -175,9 +175,9 @@ RUN bundle install --gemfile=/tmp/Gemfile
 # openjdk:8 image.
 
 RUN if [ `uname -m` = "aarch64" ] ; then \
-    ln -s /usr/lib/jvm/java-8-openjdk-arm64 /usr/local/openjdk-8 \
+    ln -s /usr/lib/jvm/java-8-openjdk-arm64 /usr/local/openjdk-8; \
     else \
-    ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8 \
+    ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8; \
     fi
 ENV JAVA_HOME /usr/local/openjdk-8
 ENV PATH $JAVA_HOME/bin:$PATH
