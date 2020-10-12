@@ -158,14 +158,6 @@ RUN if [ `uname -m` = "aarch64" ] ; then \
     && apt-get -qqy install --no-install-recommends dotnet-sdk-3.1 \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists; \
-    else
-    && curl -sSLO https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb; \
-    && dpkg -i packages-microsoft-prod.deb; \
-    && rm packages-microsoft-prod.deb; \
-    && apt-get -qqy update; \
-    && apt-get -qqy install --no-install-recommends dotnet-sdk-3.1; \
-    && apt-get -qqy clean; \
-    && rm -rf /var/lib/apt/lists; \
     fi
 
 # Install Ruby modules
@@ -182,7 +174,11 @@ RUN bundle install --gemfile=/tmp/Gemfile
 # The /usr/local/openjdk-8 link is created to be consistent with the
 # openjdk:8 image.
 
-RUN ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
+RUN if [ `uname -m` = "aarch64" ] ; then \
+    ln -s /usr/lib/jvm/java-8-openjdk-arm64 /usr/local/openjdk-8 \
+    else \
+    ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8 \
+    fi
 ENV JAVA_HOME /usr/local/openjdk-8
 ENV PATH $JAVA_HOME/bin:$PATH
 
