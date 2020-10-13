@@ -30,7 +30,7 @@ matrix:
     env:
       JAVA=8
   - language: generic
-    virt: vm
+    virt: lxd
     group: edge
     arch: arm64-graviton2
     env:
@@ -42,7 +42,7 @@ matrix:
       JAVA=11
   - language: generic
     arch: arm64-graviton2
-    virt: vm
+    virt: lxd
     group: edge
     env:
       JAVA=11    
